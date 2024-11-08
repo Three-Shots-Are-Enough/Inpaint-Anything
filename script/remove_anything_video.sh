@@ -1,9 +1,8 @@
 python remove_anything_video.py \
-    --input_video ./example/video/paragliding/original_video.mp4 \
+    --input_video ./example/remove-anything-video/motorcycle/example.mp4 \
     --coords_type key_in \
-    --point_coords 652 162 \
-    --point_labels 1 \
-    --dilate_kernel_size 15 \
+    --point_coords 1250 550 --point_labels 1 \
+    --dilate_kernel_size 30 \
     --output_dir ./results \
     --sam_model_type "vit_t" \
     --sam_ckpt ./weights/mobile_sam.pt \

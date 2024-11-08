@@ -354,7 +354,7 @@ if __name__ == "__main__":
 
     # load raw video or raw frames
     if Path(video_raw_p).exists():
-        all_frame = iio.mimread(video_raw_p)
+        all_frame = iio.mimread(video_raw_p, memtest=1024**3) ## higher threshold
         fps = imageio.v3.immeta(video_raw_p, exclude_applied=False)["fps"]
 
         # tmp frames
@@ -364,6 +364,7 @@ if __name__ == "__main__":
             frame_ps.append(frame_p)
             iio.imwrite(frame_ps[i], all_frame[i])
     else:
+        print(f"frame_raw_glob: {frame_raw_glob}") # Debugging
         assert frame_raw_glob is not None
         frame_ps = sorted(glob.glob(frame_raw_glob))
         all_frame = [iio.imread(frame_p) for frame_p in frame_ps]
